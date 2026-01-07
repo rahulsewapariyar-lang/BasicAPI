@@ -3,6 +3,7 @@ package com.jugger.BasicAPI.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,7 +49,7 @@ public class EmployeeController {
     public ResponseEntity<Employee>getEmployeeById(@PathVariable Long id){
          Employee e = empServ.getEmployeeById(id);
         if (e == null){
-            return ResponseEntity.notFound().build();
+            throw new IllegalArgumentException("ID must not be null");
         }
         return ResponseEntity.ok().body(e);
     }
@@ -66,8 +67,14 @@ public class EmployeeController {
             return ResponseEntity.ok(updatedEmployee);
         }
     }
-    
-    
-
-
+    //delete method 
+    @DeleteMapping("/employee/{id}")
+    public ResponseEntity<Void>deleteEmployee(@PathVariable Long id){
+        try{
+             empServ.deleteEmployee(id);
+             return ResponseEntity.noContent().build();
+        }catch(Exception e){
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

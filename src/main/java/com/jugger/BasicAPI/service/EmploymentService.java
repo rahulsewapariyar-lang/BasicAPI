@@ -50,5 +50,11 @@ public class EmploymentService {
         }
         return employeeRepository.save(employee);
     }
-   
+
+    public void deleteEmployee(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID must not be null");
+        }
+        employeeRepository.deleteById(id);
+    } 
 }
