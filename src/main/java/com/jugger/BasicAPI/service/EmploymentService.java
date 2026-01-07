@@ -17,7 +17,7 @@ public class EmploymentService {
     public EmploymentService(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
-    
+
     //get all employees
     public List<Employee> getEmployees(){
         return employeeRepository.findAll();
@@ -43,4 +43,12 @@ public class EmploymentService {
         }
         return employeeRepository.findById(id).orElse(null);
     }
+    //update employee
+    public Employee updatEmployee(Employee employee){
+        if (employee == null || employee.getId() == null){
+            throw new IllegalArgumentException("Employee or Employee ID must not be null");
+        }
+        return employeeRepository.save(employee);
+    }
+   
 }

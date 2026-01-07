@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,9 +48,23 @@ public class EmployeeController {
     public ResponseEntity<Employee>getEmployeeById(@PathVariable Long id){
          Employee e = empServ.getEmployeeById(id);
         if (e == null){
-            throw new IllegalArgumentException("ID must not be null");
+            return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(e);
+    }
+    @PatchMapping("/employee/{id}")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee empDetails){
+        Employee exists = empServ.getEmployeeById(id);
+        if (exists == null){
+            return ResponseEntity.notFound().build();
+        }  else {
+            exists.setName(empDetails.getName());
+            exists.setEmail(empDetails.getEmail());
+            exists.setSalary(empDetails.getSalary());
+            exists.setDepartment(empDetails.getDepartment());
+            Employee updatedEmployee = empServ.add(exists);
+            return ResponseEntity.ok(updatedEmployee);
+        }
     }
     
     
