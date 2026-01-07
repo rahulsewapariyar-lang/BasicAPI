@@ -11,11 +11,7 @@ import com.jugger.BasicAPI.repository.EmployeeRepository;
 @Service
 public class EmploymentService {
     
-    private final EmployeeRepository employeeRepository;
-
-    public EmploymentService(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
-    }
+     EmployeeRepository employeeRepository;
 
     public List<Employee> getEmployees(){
         return employeeRepository.findAll();
