@@ -1,6 +1,6 @@
 package com.jugger.BasicAPI.exception;
 
-import org.springframework.web.bind.annotation.ExceptionHandler;
+// import org.springframework.web.bind.annotation.ExceptionHandler;
 
 public class DepartmentNotFoundException extends RuntimeException{
 

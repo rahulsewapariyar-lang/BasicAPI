@@ -2,7 +2,7 @@ package com.jugger.BasicAPI.controller;
 
 import java.util.List;
 
-import com.jugger.BasicAPI.exception.EmployeeNotFoundException;
+// import com.jugger.BasicAPI.exception.EmployeeNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
