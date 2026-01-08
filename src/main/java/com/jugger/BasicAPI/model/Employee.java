@@ -1,5 +1,9 @@
 package com.jugger.BasicAPI.model;
 
+import org.hibernate.annotations.Collate;
+
+import jakarta.persistence.Column;
+
 // import javax.annotation.processing.Generated;
 
 import jakarta.persistence.Entity;
@@ -19,11 +23,13 @@ public class Employee {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-
+    
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false)
     private Double salary;
-
 
     @ManyToOne
     @JoinColumn(name="department_id", nullable=false)
