@@ -1,6 +1,6 @@
 package com.jugger.BasicAPI.model;
 
-import org.hibernate.annotations.Collate;
+// import org.hibernate.annotations.Collate;
 
 import jakarta.persistence.Column;
 
